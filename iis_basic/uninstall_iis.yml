@@ -18,4 +18,4 @@
       
    - name: Restart server
      win_reboot:
-     when: iis_uninstall is defined iis_uninstall.reboot_required
+     when: (iis_uninstall is defined) and  (iis_uninstall.reboot_required)
