@@ -1,0 +1,16 @@
+---
+- name: uninstall the iis web service
+  hosts: windows
+  tasks:
+   - name: stop iis service
+     win_service:
+       name: W3Svc
+       state: stopped
+   - name: install iis
+     win_feature:
+       name: Web-Server
+       state: absent
+
+   - name: Show website address
+     debug: 
+       msg: "http://{{ ansible_host }}"
