@@ -12,7 +12,7 @@
        name: Web-Server
        state: absent
        register: iis_uninstall
-
+      
    - name: Restart server
      win_reboot:
      when: iis_uninstall.reboot_required  
