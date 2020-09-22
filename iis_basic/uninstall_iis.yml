@@ -13,6 +13,8 @@
        name: Web-Server
        state: absent
        register: iis_uninstall
+
+   - debug: var=iis_uninstall    
       
    - name: Restart server
      win_reboot:
