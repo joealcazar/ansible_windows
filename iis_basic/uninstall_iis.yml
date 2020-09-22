@@ -6,11 +6,18 @@
      win_service:
        name: W3Svc
        state: stopped
+
    - name: install iis
      win_feature:
        name: Web-Server
        state: absent
+       register: iis_uninstall
 
    - name: Show website address
      debug: 
        msg: "http://{{ ansible_host }}"
+
+   - name: Restart server
+     win_reboot:
+       post_reboot_delay: 120
+     when: iis_uninstall.reboot_required  
