@@ -8,14 +8,14 @@
        name: W3Svc
        state: stopped
 
-   - name: install iis
+   - name: uninstall iis
      win_feature:
        name: Web-Server
        state: absent
-       register: iis_uninstall
+     register: iis_uninstall
 
    - debug: var=iis_uninstall    
       
    - name: Restart server
      win_reboot:
-     when: iis_uninstall.reboot_required
+     when: iis_uninstall is defined iis_uninstall.reboot_required
