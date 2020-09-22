@@ -1,8 +1,7 @@
 ---
 - name: uninstall the iis web service
   hosts: windows
-  vars: 
-    iis_uninstall
+  
   tasks:
    - name: stop iis service
      win_service:
