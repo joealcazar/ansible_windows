@@ -5,5 +5,6 @@
     - name: Install Specific Windows Updates
       win_updates:
         category_names: "{{ categories | default(omit) }}"
+        state: installed
         whitelist: "{{ kbs | default(omit) }}"
         reboot: '{{ reboot_server | default(yes) }}'
