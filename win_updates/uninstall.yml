@@ -1,0 +1,6 @@
+---
+- hosts: windows
+  name: This is a Windows uninstall patch playbook
+  tasks:
+    - name: Uninstall Windows Updates
+      win_shell: wusa /uninstall /kb:{{ kb }} /quiet
