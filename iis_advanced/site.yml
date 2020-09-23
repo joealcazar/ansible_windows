@@ -35,12 +35,12 @@
     - name: Open port for site on the firewall
       win_firewall_rule:
         name: "iisport{{ item.port }}"
-        enable: yes
+        enabled: yes
         state: present
         localport: "{{ item.port }}"
-        action: Allow
-        direction: In
-        protocal: Tcp
+        action: allow
+        direction: in
+        protocol: Tcp
       with_items: "{{ iis_sites }}"
 
     - name: Template simple web site to iis_site_path as index.html
