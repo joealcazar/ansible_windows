@@ -1,0 +1,8 @@
+---
+- hosts: windows
+  name: This is a Query Windows patching playbook
+  tasks:
+    - name: List Windows Updates
+      win_updates:
+        category_names: "{{ categories | default(omit) }}"
+        state: searched
