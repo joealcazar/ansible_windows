@@ -5,3 +5,6 @@
     state: present
     version: "{{ java_major_version }}.{{ java_minor_version }}"
     ignore_checksums: true
+    
+- name: reboot
+  ansible.windows.win_reboot:
