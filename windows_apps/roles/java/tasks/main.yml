@@ -7,4 +7,4 @@
     ignore_checksums: true
     
 - name: reboot
-  ansible.windows.win_reboot:
+  win_reboot:
