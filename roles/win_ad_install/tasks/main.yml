@@ -1,0 +1,27 @@
+---
+# tasks file for win_ad_install
+- name: Install AD-Domain-Services 
+  win_feature:
+    name: AD-Domain-Services
+    state: present
+    include_management_tools: yes
+    include_sub_feautes: yes
+  register: result
+
+- name: install domain
+  win_domain:
+    dns_domain_name: '{{ ad_domain_name }}'
+    safe_mode_password:  '{{ ad_safe_mode_password }}'
+  register: ad
+
+- name:  Reboot after creation
+  win_reboot:
+     msg: "Server config in progress; rebooting..."
+  when: ad.reboot_required
+
+- name: list Domain Controllers in domain
+  win_shell: "nltest /dclist:{{ ad_domain_name }}"
+  register: list_dc
+
+- debug:
+    var: list_dc
